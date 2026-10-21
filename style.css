@@ -83,9 +83,25 @@ button {
   width: 100%;
 }
 
+nav,
+.scroll,
+.header {
+  opacity: 1;
+  visibility: visible;
+  transition: all 600ms 800ms;
+}
+
+.modal--open nav,
+.modal--open .scroll,
+.modal--open .header {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 400ms;
+}
+
 /* 
 
-LANDING PAGE
+  LANDING PAGE
 
 */
 
@@ -179,7 +195,7 @@ LANDING PAGE
 
 /*
 
-NAVIGATION
+  NAVIGATION
 
 */
 
@@ -237,7 +253,126 @@ nav::before {
 
 /*
 
-PROJECTS
+  MODAL
+
+*/
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 1100px;
+  height: 700px;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  visibility: hidden;
+  z-index: -1;
+  transition:
+    visibility 1s,
+    z-index 1s,
+    box-shadow 0.5s ease;
+}
+
+.modal--open .modal {
+  z-index: 60;
+  box-shadow: 0 20px 80px 0 rgba(0, 0, 0, 0.55);
+  visibility: visible;
+}
+
+.modal__half {
+  width: 50%;
+  padding: 40px 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  transition: all 300ms ease-in;
+}
+
+.modal--open .modal__about,
+.modal--open .modal__contact {
+  transform: translateX(0%);
+}
+
+.modal__about {
+  background-color: rgb(245, 245, 245);
+  transform: translateX(-110%);
+}
+
+.modal__languages {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px 16px;
+  margin-top: 8px;
+}
+
+.modal__language {
+  padding: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 300ms ease;
+}
+
+.modal__language:hover .language__name {
+  transform: scale(1);
+}
+
+.modal__language:hover {
+  filter: brightness(80%);
+  transform: scale(0.9);
+}
+
+.language__name {
+  position: absolute;
+  bottom: -10px;
+  transform: scale(0);
+  transition: all 300ms ease;
+}
+
+.modal__language--img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+}
+
+.modal__contact {
+  transform: translateX(110%);
+  background-color: #242424;
+  color: white;
+}
+
+.modal__title {
+  font-size: 26px;
+}
+
+.modal__sub-title {
+  margin: 12px 0 24px 0;
+  font-size: 14px;
+}
+
+.modal__para {
+  margin-bottom: 12px;
+  line-height: 1.75;
+}
+
+.modal__exit {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  color: #fff;
+  font-size: 36px;
+  z-index: 100;
+}
+
+/*
+
+  PROJECTS
 
 */
 
@@ -361,4 +496,32 @@ footer {
 .footer__social--link,
 .footer__copyright {
   color: white;
+}
+
+/* Small phones, tablets, large smart phones */
+@media (max-width: 768px) {
+  .modal {
+    top: 0;
+    left: 0;
+    transform: none;
+    height: auto;
+    width: 100%;
+    flex-direction: column-reverse;
+    border-radius: 0;
+  }
+
+  .modal__half {
+    width: 100%;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .nav__link:first-child {
+    display: none;
+  }
+
+  .modal__half {
+    padding: 40px;
+  }
 }
