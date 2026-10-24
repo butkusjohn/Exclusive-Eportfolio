@@ -134,6 +134,22 @@ nav,
   transition: all 400ms;
 }
 
+nav,
+.scroll,
+.header {
+  opacity: 1;
+  visibility: visible;
+  transition: all 600ms 800ms;
+}
+
+.modal--open nav,
+.modal--open .scroll,
+.modal--open .header {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 400ms;
+}
+
 /* 
 
   LANDING PAGE
@@ -329,7 +345,7 @@ nav::before {
 
 .modal--open .modal__about,
 .modal--open .modal__contact {
-  transform: translateX(0%);
+  transform: translateX(-0%);
 }
 
 .modal__about {
